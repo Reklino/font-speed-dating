@@ -1,0 +1,107 @@
+<html ng-app="app">
+
+<head>
+    <title>Font Dating</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/sass/screen.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Reklino/gromlicons/master/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-hotkeys/build/hotkeys.min.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body ng-controller="MainController">
+
+    <nav>
+        <ul>
+            <li>
+                <a href="#" ng-click="randomize()">
+                    <i class="icon icon_refresh"></i>
+                </a>
+            </li>
+            <li>
+                <i ng-click="love()" class="icon icon_heart"></i>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="primary">
+
+        <main>
+            <a id="aside-toggle" ng-click="aside=!aside;peek=false" ng-mouseenter="peek=true" ng-mouseleave="peek=false"><i class="icon icon_grid-1"></i></a>
+
+            <div class="info1">
+                {{ fonts.items[header.active].family }}
+                <a class="variant-btn"
+                    ng-repeat="variant in fonts.items[header.active].variants"
+                    ng-class="{ 'variant-active' : variant == hv.string }"
+                    ng-click="setHeaderVariant(variant)">
+					{{ variant }}
+				</a>
+            </div>
+
+            <div id="content" class="container">
+                <div class="col-3 font-labels">
+                    <h1 class="big"
+                    	ng-style="{
+                    		'font-family': fonts.items[header.active].family,
+                    		'font-weight': hv.weight,
+                            'font-style' : hv.style
+                    	}">
+                    	Ag
+                    </h1>
+                    <h1 class="big"
+                    	ng-style="{
+                    		'font-family': fonts.items[body.active].family,
+                            'font-weight': bv.weight,
+                            'font-style' : bv.style
+                    	}">
+                    	Ag
+                    </h1>
+                </div>
+                <div class="col-9 fonts">
+                    <h1 ng-style="{
+                            'font-family': fonts.items[header.active].family,
+                            'font-weight': hv.weight,
+                            'font-style' : hv.style
+                        }">
+						{{ fonts.items[header.active].family }}
+					</h1>
+                    <p ng-style="{
+                            'font-family': fonts.items[body.active].family,
+                            'font-weight': bv.weight,
+                            'font-style' : bv.style
+                        }">
+                        One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections. The bedding was hardly able to cover it and seemed ready to slide off any moment. His many legs, pitifully thin compared with the size of the rest of him, waved about helplessly as he looked.
+                    </p>
+                </div>
+            </div>
+
+            <div class="info2">
+                {{ fonts.items[body.active].family }}
+                <a class="variant-btn"
+                    ng-repeat="variant in fonts.items[body.active].variants"
+                    ng-class="{ 'variant-active' : variant == bv.string }"
+                    ng-click="setBodyVariant(variant)">
+                    {{ variant }}
+                </a>
+            </div>
+
+        </main>
+
+        <aside ng-class="{'collapsed':!aside, 'peek':peek}">
+            <div class="pair" ng-repeat="pair in matches track by $index">
+                <i ng-click="scorn($index)" class="icon icon_heart"></i>
+                <br>
+                <h1 class="big" ng-style="{ 'font-family': fonts.items[pair.header].family }">Ag</h1>
+                <p>
+                    {{ fonts.items[pair.header].family }}
+                </p>
+            </div>
+        </aside>
+
+    </section>
+
+</body>
+
+</html>

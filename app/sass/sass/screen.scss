@@ -1,0 +1,180 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/css3";
+@import "susy";
+
+/*================================
+=            Defaults            =
+================================*/
+
+$default-transition-function: cubic-bezier(.3,.53,0,1);
+
+/*-----  End of Defaults  ------*/
+
+
+
+/*============================
+=            Grid            =
+============================*/
+
+$susy: (
+    columns: 12,
+    gutters: .33,
+    gutter-position: inside,
+    container: 1120px
+);
+$line: 24px;
+
+.container {
+	@include container;
+	margin: 0 auto;
+}
+
+.col-1     { @include span(12 of 12); }
+.col-2     { @include span(12 of 12); }
+.col-3     { @include span(12 of 12); }
+.col-4     { @include span(12 of 12); }
+.col-5     { @include span(12 of 12); }
+.col-6     { @include span(12 of 12); }
+.col-7     { @include span(12 of 12); }
+.col-8     { @include span(12 of 12); }
+.col-9     { @include span(12 of 12); }
+.col-10    { @include span(12 of 12); }
+.col-11    { @include span(12 of 12); }
+.col-12    { @include span(12 of 12); }
+
+@media (min-width: 500px) {
+    .col-1     { @include span(2 of 12); }
+    .col-2     { @include span(2 of 12); }
+    .col-3     { @include span(4 of 12); }
+    .col-4     { @include span(4 of 12); }
+    .col-5     { @include span(6 of 12); }
+    .col-6     { @include span(6 of 12); }
+    .col-7     { @include span(6 of 12); }
+    .col-8     { @include span(8 of 12); }
+    .col-9     { @include span(8 of 12); }
+    .col-10    { @include span(10 of 12); }
+    .col-11    { @include span(10 of 12); }
+    .col-12    { @include span(12 of 12); }
+}
+@media (min-width: 800px) {
+    .col-1     { @include span(1 of 12); }
+    .col-2     { @include span(2 of 12); }
+    .col-3     { @include span(3 of 12); }
+    .col-4     { @include span(4 of 12); }
+    .col-5     { @include span(5 of 12); }
+    .col-6     { @include span(6 of 12); }
+    .col-7     { @include span(7 of 12); }
+    .col-8     { @include span(8 of 12); }
+    .col-9     { @include span(9 of 12); }
+    .col-10    { @include span(10 of 12); }
+    .col-11    { @include span(11 of 12); }
+    .col-12    { @include span(12 of 12); }
+}
+
+/*-----  End of Grid  ------*/
+
+
+
+/*==================================
+=            Typography            =
+==================================*/
+
+body {
+	font-family: 'Droid Sans', serif;
+}
+
+h1 {
+	font-size: 72px;
+	line-height: $line*3;
+	margin-bottom: $line*3;
+}
+h1.big {
+	font-size: 120px;
+	color: #ccc;
+}
+p {
+	font-size: 16px;
+	line-height: $line;
+}
+.icon {
+	font-size: 32px;
+}
+
+/*-----  End of Typography  ------*/
+
+/*==============================
+=            Layout            =
+==============================*/
+
+#aside-toggle {
+	position: absolute;
+	top: 0; right: 0;
+	width: 50px; height: 50px;
+	&:hover {
+
+	}
+}
+nav {
+	position: fixed;
+	z-index: 1;
+	bottom: 0;
+	height: $line*3;
+}
+#primary {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-around;
+	align-content: space-around;
+}
+main {
+	position: relative;
+	flex: 1 1;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-around;
+	align-content: space-around;
+	#content {
+		height: auto;
+	}
+}
+aside {
+	@include transition;
+	flex: 0 0 200px;
+	height: 100%;
+	overflow: scroll;
+	&.collapsed {
+		flex: 0;
+		&.peek {
+			flex: 0 0 20px;
+		}
+	}
+}
+
+.variant-btn {
+	display: inline-block;
+	cursor: pointer;
+	background: #ccc;
+	color: #333;
+	height: $line*2;
+	line-height: $line*2;
+	padding: 0 1em;
+	&.variant-active {
+		background: #aaa;
+	}
+}
+.font-labels {
+	text-align: right;
+}
+
+
+
+/*-----  End of Layout  ------*/
+
+
+
+
